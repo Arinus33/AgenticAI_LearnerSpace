@@ -1,0 +1,19 @@
+Operating Systems — Unit 3: Process Management (class notes)
+
+A process is a program in execution. Each process has its own address space, program counter, registers, and open files. The OS maintains a Process Control Block (PCB) for every process storing its state, PID, CPU registers, scheduling info, and memory limits.
+
+Process states: New, Ready, Running, Waiting (blocked), Terminated. A context switch happens when the CPU moves from one process to another; the OS saves the old PCB and loads the new one. Context switches are pure overhead.
+
+CPU Scheduling algorithms:
+- FCFS (First Come First Serve): simple queue, suffers from the convoy effect where short jobs wait behind long ones.
+- SJF (Shortest Job First): optimal average waiting time but needs to know burst times in advance; can starve long jobs.
+- Round Robin: each process gets a fixed time quantum; good for time-sharing. Too small a quantum = too many context switches, too large = behaves like FCFS.
+- Priority Scheduling: highest priority first; starvation fixed using aging (gradually increasing priority of waiting processes).
+
+Threads are lightweight processes sharing the same address space. User-level threads are fast to switch but one blocking call blocks all; kernel-level threads are managed by the OS and can run in parallel on multiple cores.
+
+Inter-Process Communication (IPC): shared memory (fast, needs synchronization) and message passing (slower, easier to reason about, works across machines).
+
+The critical section problem: only one process may execute in its critical section at a time. Solutions must guarantee mutual exclusion, progress, and bounded waiting. Tools: mutex locks, semaphores (wait/signal), monitors. A binary semaphore behaves like a mutex; a counting semaphore controls access to N resources.
+
+Deadlock requires four conditions simultaneously: mutual exclusion, hold and wait, no preemption, circular wait. Handling strategies: prevention (break one condition), avoidance (Banker's algorithm), detection and recovery, or ostrich approach (ignore it, used by most OSes).
