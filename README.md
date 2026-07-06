@@ -21,8 +21,8 @@ Works on Windows, macOS, and Linux. You need **Python 3.10+**.
 
 **1. Clone and enter the repo**
 ```bash
-git clone https://github.com/<your-username>/study-squad.git
-cd study-squad
+git clone https://github.com/Arinus33/AgenticAI_LearnerSpace.git
+cd AgenticAI_LearnerSpace
 ```
 
 **2. Create a virtual environment and install dependencies**
@@ -102,13 +102,6 @@ You'll see the combined output plus a line showing exactly which agents ran.
 2. **Route validation** — in `agents/supervisor.py`, the supervisor's raw LLM output is validated against a whitelist; garbage output falls back to `FINISH` instead of crashing, and an agent is never re-routed to twice.
 3. **Loop cap** — `MAX_STEPS = 6` in the supervisor guarantees the graph can never loop forever (protecting both correctness and your API quota). Plus `main.py` catches exceptions and prints actionable tips instead of a stack trace.
 
-## 💸 How this project minimizes API calls
-
-- Supervisor only invokes agents the request actually needs (1 routing call ≈ 10 tokens of output).
-- Retrieval is local (no embedding calls); only relevant note chunks go into prompts.
-- SQLite response caching makes repeated test runs free.
-- `MOCK_MODE=1` for fully offline development.
-- A typical "quiz me" run = **2 LLM calls total** (1 route + 1 quiz + cached FINISH route).
 
 ## 📁 Repo structure
 
