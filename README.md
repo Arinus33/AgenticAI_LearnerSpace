@@ -124,8 +124,3 @@ study-squad/
 └── sample_data/
     └── os_notes.txt      # sample Operating Systems class notes
 ```
-
-## 🔮 Possible extensions
-- Swap the local retriever for FAISS + embeddings for larger note sets.
-- Add a Flashcard agent, or a Hierarchical layer (a "Subject Dean" supervising per-subject supervisors).
-- Persist state with LangGraph checkpoints for multi-session studying.
